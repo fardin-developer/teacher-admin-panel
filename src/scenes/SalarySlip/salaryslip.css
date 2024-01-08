@@ -1,0 +1,189 @@
+.fullpage {
+    width: 60vw;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.main {
+    margin: 0;
+    padding: 0;
+    border: 1px solid black;
+    width: 90vw;
+    height: 80vh;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.left {
+    margin-left: 1.5rem;
+}
+
+.right {
+    margin-right: 1.5rem;
+}
+
+.employdetails {
+    display: flex;
+    justify-content: space-between;
+}
+
+.salary-details-container {
+    margin: 20px;
+}
+
+.leftdetails {
+    margin-left: 1.5rem;
+}
+
+.rightdetails {
+    margin-right: 1.5rem;
+}
+
+button {
+    padding: 10px 20px;
+    /* Adjust padding as needed */
+    font-size: 16px;
+    /* Adjust font size as needed */
+    display: block;
+    /* Make it a block element */
+    margin: 0 auto;
+    /* Center the button */
+    margin-bottom: 15px;
+    margin-top: 10px;
+    color: white;
+    background-color: #956464;
+}
+
+.salary-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.salary-table th,
+.salary-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.salary-table th {
+    background-color: #867f7f;
+}
+
+.note {
+    margin-left: 1.5rem;
+}
+
+@page {
+    size: A4;
+    margin: 0;
+}
+
+@media only screen and (max-width: 600px) {
+
+    h1 {
+        font-size: large;
+    }
+
+    h2 {
+        font-size: medium;
+    }
+
+    h3 {
+        font-size: medium;
+    }
+
+    .header {
+        margin-top: 1.2rem;
+    }
+
+    .left {
+        margin-left: .5rem;
+    }
+
+    .left h1 {
+        font-size: x-large;
+    }
+
+    .right {
+        margin-right: 0.5rem;
+
+        p {
+            margin-top: 24px;
+        }
+    }
+
+    .leftdetails {
+        margin-left: 0.5rem;
+    }
+
+    .rightdetails {
+        margin-left: 0.5rem;
+    }
+
+    .fullpage {
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    .main {
+        height: 100%;
+    }
+}
+
+@media print {
+    body {
+        visibility: hidden;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    .fullpage {
+        width: 100vw;
+        height: 90vh;
+        margin-top: 4rem;
+        visibility: visible;
+        position: absolute;
+        color: black;
+
+        left: 0;
+        top: 0;
+        height: auto;
+  
+
+    }
+
+    h1 {
+        font-size: xx-large;
+    }
+
+    h2 {
+        font-size: large;
+    }
+
+    button {
+        display: none;
+    }
+
+    .main {
+        border: 1px solid black;
+        width: 90vw;
+        height: 80vh;
+    }
+}
+

@@ -1,0 +1,57 @@
+/* salary.css */
+
+/* Style for the form container */
+.salary-form {
+    max-width: 400px;
+    margin: 5rem auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Style for the heading */
+  .salary-heading {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Style for labels */
+  .salary-label {
+    /* margin-top: 8px;*/
+    margin-bottom: 8px;
+    display: block; 
+  }
+  
+  /* Style for select dropdown */
+  .salary-select {
+    width: 95%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  .labelnInpt{
+    width: 100%;
+    margin-bottom: 10px;
+  }
+ 
+  /* Style for year input */
+  .salary-input {
+    padding: 8px;
+    border-radius: 5px;
+    width: 90%;
+    border: 1px solid #ccc;
+    margin: auto;
+  }#name{
+    width: 90%;
+  }
+  
+  button{
+    padding: 10px 20px;
+    background-color: rgb(112, 194, 30);
+    cursor: pointer;
+    border-radius: 10%;
+  }
+  #month{
+    width: 90%;
+  }

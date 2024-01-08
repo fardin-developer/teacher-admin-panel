@@ -1,0 +1,24 @@
+.mainInvoice {
+    margin: 20px;
+  }
+  
+  .gridTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #b19393;
+  }
+  
+  tr:hover {
+    background-color: #b19393;
+  }
+  
