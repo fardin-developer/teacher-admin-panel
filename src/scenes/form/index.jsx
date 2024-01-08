@@ -152,8 +152,8 @@ const Form = () => {
                 Create New User
               </Button>
             </Box>
-            <h2 style={{ textAlign: "center",color:"#c95757" }}> {message.message}</h2>
-            <p style={{ textAlign: "center",color:"yellow" }}>{message.message1}</p>
+            <h2 style={{ textAlign: "center",color:(message.status===200)?"green":"#c95757" }}> {message.message}</h2>
+            <p style={{ textAlign: "center",color:(message.status===200)?"green":"#c95757" }}>{message.message1}</p>
 
           </form>
 
