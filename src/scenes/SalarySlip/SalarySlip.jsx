@@ -31,7 +31,7 @@ const SalarySlip = () => {
         <div className="main">
           <div className="header">
             <div className="left">
-              <h1>Ayesha Academy</h1>
+              <h1>Gyanudoi Academy</h1>
               <p>Tagline in name</p>
             </div>
             <div className="right">
