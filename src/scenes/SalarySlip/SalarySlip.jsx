@@ -31,7 +31,7 @@ const SalarySlip = () => {
         <div className="main">
           <div className="header">
             <div className="left">
-              <h1>Gyanudoi Academy</h1>
+              <h1>Gyanudoi Jatiya Academy</h1>
               <p>Tagline in name</p>
             </div>
             <div className="right">
@@ -42,9 +42,9 @@ const SalarySlip = () => {
           <hr />
           <div className="employdetails">
             <div className="leftdetails">
-              <h2>Employ Summary</h2>
+              <h2>Employee Summary</h2>
               <h3>Name: {salaryDetails.name}</h3>
-              <h4>Employ ID:73428734y</h4>
+              <h4>Employee ID:73428734y</h4>
             </div>
             <div className="rightdetails">
               <h2>Base salary:{salaryDetails.baseslary}</h2>
@@ -99,7 +99,7 @@ const SalarySlip = () => {
           <div className="note">
             <p>*Day salary = total salary/30</p>
             <p>*Net salary = base salary - deducted salary</p>
-            <p>*Holidays attendences are free and you will get payment for that day</p>
+            <p>*Holidays attendances are free and you will get payment for that day</p>
           </div>
 
         </div>

@@ -16,7 +16,7 @@ const Contacts = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://backend-teacher-production.up.railway.app/attendence-list');
+        const response = await fetch('https://backend-teacher-production.up.railway.app/-list');
         const resData = await response.json();
         // setdata(resData.attendence);
         console.log(resData);
@@ -40,7 +40,7 @@ const Contacts = () => {
     },
     {
       field: "attendance",
-      headerName: "Attendence",
+      headerName: "attendance",
       type: "number",
       headerAlign: "center",
       align: "center",
