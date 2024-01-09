@@ -18,7 +18,6 @@ const Contacts = () => {
       try {
         const response = await fetch('https://backend-teacher-production.up.railway.app/-list');
         const resData = await response.json();
-        // setdata(resData.attendence);
         console.log(resData);
         setMock(resData)
       } catch (error) {
@@ -57,7 +56,7 @@ const Contacts = () => {
   return (
     <Box m="20px">
       <Header
-        title="CONTACTS"
+        title="Attendances"
         subtitle="List of Contacts for Future Reference"
       />
       <Box
