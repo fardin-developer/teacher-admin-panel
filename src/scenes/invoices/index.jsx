@@ -50,7 +50,7 @@ const Invoices = () => {
       <tr>
         <th>id</th>
         <th>name</th>
-        <th>cost</th>
+        <th>Salay</th>
         <th>phone</th>
         <th>Date</th>
       </tr>
