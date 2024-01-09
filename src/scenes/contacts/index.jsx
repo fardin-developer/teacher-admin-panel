@@ -16,8 +16,9 @@ const Contacts = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://backend-teacher-production.up.railway.app/-list');
+        const response = await fetch('https://backend-teacher-production.up.railway.app/attendence-list');
         const resData = await response.json();
+        // setdata(resData.attendence);
         console.log(resData);
         setMock(resData)
       } catch (error) {
@@ -39,7 +40,7 @@ const Contacts = () => {
     },
     {
       field: "attendance",
-      headerName: "attendance",
+      headerName: "Attendance",
       type: "number",
       headerAlign: "center",
       align: "center",
@@ -56,8 +57,8 @@ const Contacts = () => {
   return (
     <Box m="20px">
       <Header
-        title="Attendances"
-        subtitle="List of Contacts for Future Reference"
+        title="Attendance"
+        subtitle="List of attendance for better analysis"
       />
       <Box
         m="40px 0 0 0"
