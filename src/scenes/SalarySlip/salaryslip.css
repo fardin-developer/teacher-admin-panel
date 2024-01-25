@@ -1,10 +1,11 @@
 .fullpage {
     width: 60vw;
-    height: 90vh;
+    /* height: 90vh; */
     display: flex;
     justify-content: center;
     align-items: center;
     margin: auto;
+    height: auto;
 }
 
 .main {
@@ -12,7 +13,8 @@
     padding: 0;
     border: 1px solid black;
     width: 90vw;
-    height: 80vh;
+    /* height: 80vh; */
+    height: auto;
 }
 
 .header {
