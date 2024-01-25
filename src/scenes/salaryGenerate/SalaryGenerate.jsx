@@ -62,7 +62,9 @@ const Salary = () => {
                         attendences: responseData.numberOfPresentAttendances,
                         sunday: responseData.sundaysCount,
                         baseslary: responseData.baseslary,
-                        salary: responseData.finalSalary
+                        salary: responseData.finalSalary,
+                        lateTimeCount: responseData.lateTimeCount,
+                        lateTimeSalary: responseData.lateTimeSalary
                     }));
                     navigate("/salary-slip");
 
