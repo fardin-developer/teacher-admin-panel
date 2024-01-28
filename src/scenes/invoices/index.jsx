@@ -21,7 +21,7 @@ const Invoices = () => {
         // console.log(data.users);
 
       } catch (error) {
-        console.error("Error fetching data:", error);
+        // console.error("Error fetching data:", error);
       }
     };
 
@@ -34,7 +34,7 @@ const Invoices = () => {
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem('data'));
     if (items) {
-      console.log(items);
+      // console.log(items);
     }
   }, []);
 
