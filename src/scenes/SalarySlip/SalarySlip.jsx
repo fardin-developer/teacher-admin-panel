@@ -75,7 +75,7 @@ const SalarySlip = () => {
                   </tr>
                   <tr>
                     <td>Late time in Hour</td>
-                    <td>{(salaryDetails.lateTimeCount/60).toFixed(2)} Hour</td>
+                    <td>{(Math.round((salaryDetails.lateTimeCount/60)*100))/100} Hour</td>
                   </tr>
                   <tr>
                     <td>Absent salary deduction</td>
@@ -83,7 +83,7 @@ const SalarySlip = () => {
                   </tr>
                   <tr>
                     <td>Late time salary deduction</td>
-                    <td style={{color:"red"}}>{(salaryDetails.lateTimeSalary.toFixed(2))} ₹</td>
+                    <td style={{color:"red"}}>{(salaryDetails.lateTimeSalary)} ₹</td>
                   </tr>
                 
                   <tr>
