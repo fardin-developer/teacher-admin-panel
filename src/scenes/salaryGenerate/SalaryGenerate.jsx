@@ -42,7 +42,7 @@ const Salary = () => {
 
             console.log(`Selected Month: ${Months[smonth]}, Year: ${syear}`);
             try {
-                const response = await fetch('https://backend-teacher-production.up.railway.app/salary', {
+                const response = await fetch('http://localhost:4000/salary', {
                     method: 'POST',
                     headers: {
                         Accept: 'application.json',

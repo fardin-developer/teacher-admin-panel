@@ -1,63 +1,73 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'
 import './salaryslip.css'
 const Months = [
-  'January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December'
-];
-
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December'
+]
 
 const SalarySlip = () => {
   const [salaryDetails, setSalaryDetails] = useState({})
   const handlePrint = () => {
-    window.print();
-  };
+    window.print()
+  }
   useEffect(() => {
-    const storedSalaryDetails = localStorage.getItem('salaryDetails');
+    const storedSalaryDetails = localStorage.getItem('salaryDetails')
     if (storedSalaryDetails) {
-      setSalaryDetails(JSON.parse(storedSalaryDetails));
-      console.log(JSON.parse(storedSalaryDetails));
-
+      setSalaryDetails(JSON.parse(storedSalaryDetails))
+      console.log(JSON.parse(storedSalaryDetails))
     } else {
-      console.log("not set");
+      console.log('not set')
     }
-
-  }, []);
-  let monthNumber = Number(salaryDetails.month) + 1;
+  }, [])
+  let monthNumber = Number(salaryDetails.month) + 1
 
   return (
     <>
       <button onClick={handlePrint}>Download</button>
-      <div className="fullpage">
-        <div className="main">
-          <div className="header">
-            <div className="left">
+      <div className='fullpage'>
+        <div className='main'>
+          <div className='header'>
+            <div className='left'>
               <h1>Gyanudoi Jatiya Academy</h1>
               <p>Tagline in name</p>
             </div>
-            <div className="right">
+            <div className='right'>
               <p>Payslip For the month </p>
               <h2>March 2023</h2>
             </div>
           </div>
           <hr />
-          <div className="employdetails">
-            <div className="leftdetails">
+          <div className='employdetails'>
+            <div className='leftdetails'>
               <h2>Employee Summary</h2>
               <h3>Name: {salaryDetails.name}</h3>
               <h4>Employee ID:73428734y</h4>
             </div>
-            <div className="rightdetails">
+            <div className='rightdetails'>
               <h2>Base salary:{salaryDetails.baseslary}</h2>
-              <h2 style={{ color: "green" }}>Net Salary: {(salaryDetails.attendences>0)?salaryDetails.salary:0}</h2>
+              <h2 style={{ color: 'green' }}>
+                Net Salary:{' '}
+                {salaryDetails.attendences > 0 ? salaryDetails.salary : 0}
+              </h2>
               <h5>Bill Month:01-{monthNumber}-2024</h5>
             </div>
           </div>
           <hr />
 
-          <div className="extraDetails">
-            <div className="salary-details-container">
+          <div className='extraDetails'>
+            <div className='salary-details-container'>
               <h2>Salary Details</h2>
-              <table className="salary-table">
+              <table className='salary-table'>
                 <thead>
                   <tr>
                     <th>Details</th>
@@ -67,57 +77,112 @@ const SalarySlip = () => {
                 <tbody>
                   <tr>
                     <td>Attendance + Holiday</td>
-                    <td>{salaryDetails.attendences} + {salaryDetails.sunday}</td>
+                    <td>
+                      {salaryDetails.attendences} + {salaryDetails.sunday}
+                    </td>
                   </tr>
                   <tr>
                     <td>Absent</td>
-                    <td>{30 - (salaryDetails.attendences + salaryDetails.sunday)} days</td>
+                    <td>
+                      {30 - (salaryDetails.attendences + salaryDetails.sunday)}{' '}
+                      days
+                    </td>
                   </tr>
                   <tr>
                     <td>Late time in Hour</td>
-                    <td>{(Math.round((salaryDetails.lateTimeCount/60)*100))/100} Hour</td>
+                    <td>
+                      {Math.round((salaryDetails.lateTimeCount / 60) * 100) /
+                        100}{' '}
+                      Hour
+                    </td>
                   </tr>
                   <tr>
                     <td>Absent salary deduction</td>
-                    <td style={{color:"red"}}>{(30 - (salaryDetails.attendences + salaryDetails.sunday))*salaryDetails.baseslary/30} ₹</td>
+                    <td style={{ color: 'red' }}>
+                      {salaryDetails.attendences > 0
+                        ? ((30 -
+                            (salaryDetails.attendences +
+                              salaryDetails.sunday)) *
+                            salaryDetails.baseslary) /
+                          30
+                        : salaryDetails.baseslary}{' '}
+                      ₹
+                    </td>
                   </tr>
                   <tr>
                     <td>Late time salary deduction</td>
-                    <td style={{color:"red"}}>{(salaryDetails.lateTimeSalary)} ₹</td>
+                    <td style={{ color: 'red' }}>
+                      {salaryDetails.lateTimeSalary} ₹
+                    </td>
                   </tr>
-                
+
                   <tr>
                     <td>Day Salary</td>
                     <td>{salaryDetails.baseslary / 30}</td>
                   </tr>
                   <tr>
                     <td>Base Salary</td>
-                    <td><span style={{ fontWeight: "bold" }}>&nbsp;{salaryDetails.baseslary}</span></td>
+                    <td>
+                      <span style={{ fontWeight: 'bold' }}>
+                        &nbsp;{salaryDetails.baseslary.toFixed(2)}
+                      </span>
+                    </td>
                   </tr>
                   <tr>
                     <td>Deducted Salary</td>
-                    <td>-<span style={{fontWeight:"bold"}}>{((30 - (salaryDetails.attendences + salaryDetails.sunday))*salaryDetails.baseslary/30)+salaryDetails.lateTimeSalary}</span>  <span style={{color:"red"}}>( {(30 - (salaryDetails.attendences + salaryDetails.sunday))*salaryDetails.baseslary/30} ₹ + {salaryDetails.lateTimeSalary} ₹)</span></td>
+                    <td>
+                      -
+                      <span style={{ fontWeight: 'bold' }}>
+                        {salaryDetails.attendences > 0
+                          ? ((30 -
+                              (salaryDetails.attendences +
+                                salaryDetails.sunday)) *
+                              salaryDetails.baseslary) /
+                              30 +
+                            salaryDetails.lateTimeSalary
+                          : salaryDetails.baseslary}
+                      </span>{' '}
+                      <span style={{ color: 'red' }}>
+                        ({' '}
+                        {setSalaryDetails.attendences > 0
+                          ? ((30 -
+                              (salaryDetails.attendences +
+                                salaryDetails.sunday)) *
+                              salaryDetails.baseslary) /
+                            30
+                          : salaryDetails.baseslary}{' '}
+                        ₹ + {salaryDetails.lateTimeSalary} ₹)
+                      </span>
+                    </td>
                   </tr>
                   <tr>
                     <td>Net Salary</td>
-                    <td> <span style={{fontWeight:"bold"}}>={(salaryDetails.attendences > 0) ? salaryDetails.salary : 0}</span></td>
+                    <td>
+                      {' '}
+                      <span style={{ fontWeight: 'bold' }}>
+                        =
+                        {salaryDetails.attendences > 0
+                          ? salaryDetails.salary
+                          : 0}
+                      </span>
+                    </td>
                   </tr>
                 </tbody>
               </table>
             </div>
           </div>
 
-          <div>
-          </div>
-          <div className="note">
+          <div></div>
+          <div className='note'>
             <p>*Day salary = total salary/30</p>
             <p>*Net salary = base salary - deducted salary</p>
-            <p>*Holidays attendances are free and you will get payment for that day</p>
+            <p>
+              *Holidays attendances are free and you will get payment for that
+              day
+            </p>
           </div>
-
         </div>
       </div>
-
     </>
   )
 }
