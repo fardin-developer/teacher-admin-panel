@@ -118,7 +118,7 @@ const SalarySlip = () => {
 
                   <tr>
                     <td>Day Salary</td>
-                    <td>{salaryDetails.baseslary / 30}</td>
+                    <td>{(Math.round(salaryDetails.baseslary / 30)*100)/100}</td>
                   </tr>
                   <tr>
                     <td>Base Salary</td>
