@@ -15,10 +15,11 @@ const Invoices = () => {
       try {
         const resData = await fetch("https://backend-teacher-production.up.railway.app/users");
         const data = await resData.json();
+         console.log(data.users);
+
         setMockdataIn(data.users)
 
         localStorage.setItem('data', JSON.stringify(data.users));
-        // console.log(data.users);
 
       } catch (error) {
         // console.error("Error fetching data:", error);
