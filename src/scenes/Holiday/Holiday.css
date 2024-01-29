@@ -41,6 +41,8 @@
   
   .holiday-button.active {
     background-color: #28a745; /* Green for success */
+    cursor:not-allowed;
+    pointer-events: none; 
 }
   
   .holiday-description {
@@ -48,6 +50,7 @@
     margin-top: 20px;
     color: #555;
   }
+  
 
   @media only screen and (min-width: 600) {
     .holiday-heading {

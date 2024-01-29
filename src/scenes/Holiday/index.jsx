@@ -33,7 +33,7 @@ const Holiday = () => {
           className={`holiday-button ${isDeclaringHoliday ? 'active' : ''}`}
           onClick={handleDeclareHoliday}
         >
-          {isDeclaringHoliday ? 'Cancel Declared Holiday' : 'Declare Holiday'}
+          {isDeclaringHoliday ? 'Holiday Declared Successfully' : 'Declare Holiday'}
         </button>
         <p className='holiday-description'>
           {isDeclaringHoliday
