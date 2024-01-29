@@ -124,7 +124,7 @@ const SalarySlip = () => {
                     <td>Base Salary</td>
                     <td>
                       <span style={{ fontWeight: 'bold' }}>
-                        &nbsp;{salaryDetails.baseslary.toFixed(2)}
+                        &nbsp;{salaryDetails.baseslary}
                       </span>
                     </td>
                   </tr>
@@ -133,24 +133,18 @@ const SalarySlip = () => {
                     <td>
                       -
                       <span style={{ fontWeight: 'bold' }}>
-                        {salaryDetails.attendences > 0
-                          ? ((30 -
-                              (salaryDetails.attendences +
-                                salaryDetails.sunday)) *
-                              salaryDetails.baseslary) /
-                              30 +
-                            salaryDetails.lateTimeSalary
-                          : salaryDetails.baseslary}
+                        {((30 -
+                          (salaryDetails.attendences + salaryDetails.sunday)) *
+                          salaryDetails.baseslary) /
+                          30 +
+                          salaryDetails.lateTimeSalary}
                       </span>{' '}
                       <span style={{ color: 'red' }}>
                         ({' '}
-                        {setSalaryDetails.attendences > 0
-                          ? ((30 -
-                              (salaryDetails.attendences +
-                                salaryDetails.sunday)) *
-                              salaryDetails.baseslary) /
-                            30
-                          : salaryDetails.baseslary}{' '}
+                        {((30 -
+                          (salaryDetails.attendences + salaryDetails.sunday)) *
+                          salaryDetails.baseslary) /
+                          30}{' '}
                         ₹ + {salaryDetails.lateTimeSalary} ₹)
                       </span>
                     </td>
