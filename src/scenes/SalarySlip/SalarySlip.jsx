@@ -155,7 +155,10 @@ const SalarySlip = () => {
                       <span style={{ fontWeight: 'bold' }}>
                         =
                         {salaryDetails.attendences > 0
-                          ? salaryDetails.salary
+                          ?(salaryDetails.baseslary)- ((30 -
+                            (salaryDetails.attendences + salaryDetails.sunday)) *
+                            Number((salaryDetails.baseslary / 30).toFixed(2)) +
+                            salaryDetails.lateTimeSalary)
                           : 0}
                       </span>
                     </td>
