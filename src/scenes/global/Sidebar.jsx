@@ -182,6 +182,13 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             /> 
+              <Item
+              title="Holiday"
+              to="/holiday"
+              icon={<TimelineOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
 {/* 
             <Typography
               variant="h6"
