@@ -1,70 +1,61 @@
-import { useEffect, useState } from "react";
-import { Box, Typography, useTheme } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
+import React, { useEffect, useState } from "react";
+import { useTheme } from "@mui/material";
 import { tokens } from "../../theme";
-import Header from "../../components/Header";
 import './index.css';
 
 const Invoices = () => {
-  const [allUser, setAllUser] = useState();
-  const [mockDataInvoices, setMockdataIn] = useState([]);
+  const [mockDataInvoices, setMockDataInvoices] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const resData = await fetch("https://backend-teacher-production.up.railway.app/users");
-        const data = await resData.json();
-        console.log(data.users);
+  const fetchData = async () => {
+    try {
+      const response = await fetch("https://backend-teacher-production.up.railway.app/users");
 
-        setMockdataIn(data.users);
-
-        localStorage.setItem('data', JSON.stringify(data.users));
-      } catch (error) {
-        console.error("Error fetching data:", error);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch data. Status: ${response.status}`);
       }
-    };
 
-    fetchData();
-  }, []);
+      const data = await response.json();
+      const users = data.users || [];
+
+      console.log(users);
+      setMockDataInvoices(users);
+    } catch (error) {
+      console.error("Error fetching data:", error.message);
+    }
+  };
 
   useEffect(() => {
-    const storedData = localStorage.getItem('data');
-    if (storedData) {
-      const items = JSON.parse(storedData);
-      // Do something with 'items' if needed
-    }
+    fetchData();
   }, []);
 
   const theme = useTheme();
   const colors = tokens(theme.palette.gray);
 
   return (
-    <>
-      <div className="mainInvoice">
-        <table className="gridTable">
-          <thead>
-            <tr>
-              <th>id</th>
-              <th>name</th>
-              <th>Salay</th>
-              <th>phone</th>
-              <th>Date</th>
+    <div className="mainInvoice">
+      <table className="gridTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Salary</th>
+            <th>Phone</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {mockDataInvoices.map(item => (
+            <tr key={item.id}>
+              <td>{item.id}</td>
+              <td>{item.name}</td>
+              <td>{item.cost}</td>
+              <td>{item.phone}</td>
+              <td>{item.date}</td>
             </tr>
-          </thead>
-          <tbody>
-            {localStorage.getItem('data') && JSON.parse(localStorage.getItem('data')).map(item => (
-              <tr key={item.id}>
-                <td>{item.id}</td>
-                <td>{item.name}</td>
-                <td>{item.cost}</td>
-                <td>{item.phone}</td>
-                <td>{item.date}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
