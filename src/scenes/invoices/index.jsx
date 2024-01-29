@@ -3,75 +3,68 @@ import { Box, Typography, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import Header from "../../components/Header";
-import './index.css'
+import './index.css';
 
 const Invoices = () => {
   const [allUser, setAllUser] = useState();
   const [mockDataInvoices, setMockdataIn] = useState([]);
-
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const resData = await fetch("https://backend-teacher-production.up.railway.app/users");
         const data = await resData.json();
-         console.log(data.users);
+        console.log(data.users);
 
-        setMockdataIn(data.users)
+        setMockdataIn(data.users);
 
         localStorage.setItem('data', JSON.stringify(data.users));
-
       } catch (error) {
-        // console.error("Error fetching data:", error);
+        console.error("Error fetching data:", error);
       }
     };
 
     fetchData();
   }, []);
-  // useEffect(() => {
-  //   console.log(mockDataInvoices);
-  // })
 
   useEffect(() => {
-    const items = JSON.parse(localStorage.getItem('data'));
-    if (items) {
-      // console.log(items);
+    const storedData = localStorage.getItem('data');
+    if (storedData) {
+      const items = JSON.parse(storedData);
+      // Do something with 'items' if needed
     }
   }, []);
 
   const theme = useTheme();
   const colors = tokens(theme.palette.gray);
 
-
   return (
     <>
-   <div className="mainInvoice">
-  <table className="gridTable">
-    <thead>
-      <tr>
-        <th>id</th>
-        <th>name</th>
-        <th>Salay</th>
-        <th>phone</th>
-        <th>Date</th>
-      </tr>
-    </thead>
-    <tbody>
-      {localStorage.getItem('data') && JSON.parse(localStorage.getItem('data')).map(item => (
-        <tr key={item.id}>
-          <td>{item.id}</td>
-          <td>{item.name}</td>
-          <td>{item.cost}</td>
-          <td>{item.phone}</td>
-          <td>{item.date}</td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</div>
-    
+      <div className="mainInvoice">
+        <table className="gridTable">
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>name</th>
+              <th>Salay</th>
+              <th>phone</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {localStorage.getItem('data') && JSON.parse(localStorage.getItem('data')).map(item => (
+              <tr key={item.id}>
+                <td>{item.id}</td>
+                <td>{item.name}</td>
+                <td>{item.cost}</td>
+                <td>{item.phone}</td>
+                <td>{item.date}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </>
-
   );
 };
 
