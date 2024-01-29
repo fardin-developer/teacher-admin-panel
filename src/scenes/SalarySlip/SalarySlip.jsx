@@ -30,6 +30,14 @@ const SalarySlip = () => {
     }
   }, [])
   let monthNumber = Number(salaryDetails.month) + 1
+  function getMonthName (monthNumber) {
+    const date = new Date()
+    date.setMonth(monthNumber - 1)
+
+    // Using the browser's default locale.
+    return date.toLocaleString([], { month: 'long' })
+  }
+  const currentDate = new Date();
 
   return (
     <>
@@ -43,7 +51,7 @@ const SalarySlip = () => {
             </div>
             <div className='right'>
               <p>Payslip For the month </p>
-              <h2>March 2023</h2>
+              <h2>{getMonthName(monthNumber)} {new Date().getFullYear()}</h2>
             </div>
           </div>
           <hr />
@@ -51,7 +59,7 @@ const SalarySlip = () => {
             <div className='leftdetails'>
               <h2>Employee Summary</h2>
               <h3>Name: {salaryDetails.name}</h3>
-              <h4>Employee ID:73428734y</h4>
+              <h4>Employee ID: {salaryDetails.id}</h4>
             </div>
             <div className='rightdetails'>
               <h2>Base salary:{salaryDetails.baseslary}</h2>
@@ -59,7 +67,7 @@ const SalarySlip = () => {
                 Net Salary:{' '}
                 {salaryDetails.attendences > 0 ? salaryDetails.salary : 0}
               </h2>
-              <h5>Bill Month:01-{monthNumber}-2024</h5>
+              <h5>Bill Generation Month:{currentDate.toLocaleDateString()}</h5>
             </div>
           </div>
           <hr />
@@ -132,10 +140,13 @@ const SalarySlip = () => {
                     <td>
                       -
                       <span style={{ fontWeight: 'bold' }}>
-                        {(30 -
-                          (salaryDetails.attendences + salaryDetails.sunday)) *
-                          Number((salaryDetails.baseslary / 30).toFixed(2)) +
-                          salaryDetails.lateTimeSalary}
+                        {Number(
+                          (30 -
+                            (salaryDetails.attendences +
+                              salaryDetails.sunday)) *
+                            (salaryDetails.baseslary / 30) +
+                            salaryDetails.lateTimeSalary
+                        ).toFixed(2)}
                       </span>{' '}
                       <span style={{ color: 'red' }}>
                         ({' '}
@@ -155,10 +166,7 @@ const SalarySlip = () => {
                       <span style={{ fontWeight: 'bold' }}>
                         =
                         {salaryDetails.attendences > 0
-                          ?(salaryDetails.baseslary)- ((30 -
-                            (salaryDetails.attendences + salaryDetails.sunday)) *
-                            Number((salaryDetails.baseslary / 30).toFixed(2)) +
-                            salaryDetails.lateTimeSalary)
+                          ? salaryDetails.salary
                           : 0}
                       </span>
                     </td>

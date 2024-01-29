@@ -64,7 +64,8 @@ const Salary = () => {
                         baseslary: responseData.baseslary,
                         salary: responseData.finalSalary,
                         lateTimeCount: responseData.lateTimeCount,
-                        lateTimeSalary: responseData.lateTimeSalary
+                        lateTimeSalary: responseData.lateTimeSalary,
+                        id:responseData.id
                     }));
                     navigate("/salary-slip");
 
