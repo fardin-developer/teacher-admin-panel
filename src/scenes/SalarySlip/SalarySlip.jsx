@@ -100,11 +100,10 @@ const SalarySlip = () => {
                     <td>Absent salary deduction</td>
                     <td style={{ color: 'red' }}>
                       {salaryDetails.attendences > 0
-                        ? ((30 -
+                        ? (30 -
                             (salaryDetails.attendences +
                               salaryDetails.sunday)) *
-                            salaryDetails.baseslary) /
-                          30
+                          Number((salaryDetails.baseslary / 30).toFixed(2))
                         : salaryDetails.baseslary}{' '}
                       ₹
                     </td>
@@ -118,7 +117,7 @@ const SalarySlip = () => {
 
                   <tr>
                     <td>Day Salary</td>
-                    <td>{(Math.round(salaryDetails.baseslary / 30)*100)/100}</td>
+                    <td>{Number((salaryDetails.baseslary / 30).toFixed(2))}</td>
                   </tr>
                   <tr>
                     <td>Base Salary</td>
@@ -133,18 +132,18 @@ const SalarySlip = () => {
                     <td>
                       -
                       <span style={{ fontWeight: 'bold' }}>
-                        {((30 -
+                        {(30 -
                           (salaryDetails.attendences + salaryDetails.sunday)) *
-                          salaryDetails.baseslary) /
-                          30 +
+                          Number((salaryDetails.baseslary / 30).toFixed(2)) +
                           salaryDetails.lateTimeSalary}
                       </span>{' '}
                       <span style={{ color: 'red' }}>
                         ({' '}
-                        {((30 -
+                        {(30 -
                           (salaryDetails.attendences + salaryDetails.sunday)) *
-                          salaryDetails.baseslary) /
-                          30}{' '}
+                          Number(
+                            (salaryDetails.baseslary / 30).toFixed(2)
+                          )}{' '}
                         ₹ + {salaryDetails.lateTimeSalary} ₹)
                       </span>
                     </td>
