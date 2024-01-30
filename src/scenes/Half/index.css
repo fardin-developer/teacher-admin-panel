@@ -1,0 +1,64 @@
+.holiday-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+  }
+  
+  .holiday-main {
+    text-align: center;
+  }
+  .caution{
+    color: rgb(238, 37, 37);
+    font-size: larger;
+  }
+  .holiday-heading {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  
+  .holiday-button {
+    background-color: #ffd700; /* Yellow */
+    border: none;
+    color: #fff; /* White text */
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .holiday-button:hover {
+    background-color: #ffc107; /* Darker yellow on hover */
+  }
+  
+  .holiday-button.active {
+    background-color: #28a745; /* Green for success */
+    cursor:not-allowed;
+    pointer-events: none; 
+}
+  
+  .holiday-description {
+    font-size: 18px;
+    margin-top: 20px;
+    color: #555;
+  }
+  
+
+  @media only screen and (min-width: 600) {
+    .holiday-heading {
+      font-size: 55px; /* or 'small' or any other valid size value */
+      margin-bottom: 20px;
+    }
+  
+  /* // not working media query */
+  }
+  
+  

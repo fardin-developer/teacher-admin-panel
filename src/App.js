@@ -8,7 +8,6 @@ import Invoices from "./scenes/invoices";
 import Contacts from "./scenes/contacts";
 import Bar from "./scenes/bar";
 import Form from "./scenes/form";
-import Pie from "./scenes/pie";
 import FAQ from "./scenes/salaryUpgrade";
 import Geography from "./scenes/geography";
 import { CssBaseline, ThemeProvider } from "@mui/material";
@@ -17,6 +16,7 @@ import Calendar from "./scenes/calendar/calendar";
 import SalaryGenerate from './scenes/salaryGenerate/SalaryGenerate'
 import SalarySlip from './scenes/SalarySlip/SalarySlip'
 import Holiday from "./scenes/Holiday";
+import HalfHoliday from "./scenes/Half";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -37,7 +37,7 @@ function App() {
               <Route path="/invoices" element={<Invoices />} />
               <Route path="/form" element={<Form />} />
               <Route path="/bar" element={<Bar />} />
-              <Route path="/pie" element={<Pie />} />
+              <Route path="/half-holiday" element={<HalfHoliday />} />
               <Route path="/holiday" element={<Holiday />} />
               <Route path="/salary-upgrade" element={<FAQ />} />
               <Route path="/calendar" element={<Calendar />} />
