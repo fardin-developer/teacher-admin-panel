@@ -67,7 +67,7 @@ const SalarySlip = () => {
                 Net Salary:{' '}
                 {salaryDetails.attendences > 0 ? salaryDetails.salary : 0}
               </h2>
-              <h5>Bill Generation Month:{currentDate.toLocaleDateString()}</h5>
+              <h5>Bill Generation Date:{currentDate.toLocaleDateString()}</h5>
             </div>
           </div>
           <hr />
@@ -108,10 +108,10 @@ const SalarySlip = () => {
                     <td>Absent salary deduction</td>
                     <td style={{ color: 'red' }}>
                       {salaryDetails.attendences > 0
-                        ? (30 -
+                        ? Number((30 -
                             (salaryDetails.attendences +
                               salaryDetails.sunday)) *
-                          Number((salaryDetails.baseslary / 30).toFixed(2))
+                          Number((salaryDetails.baseslary / 30).toFixed(2))).toFixed(2)
                         : salaryDetails.baseslary}{' '}
                       ₹
                     </td>
@@ -150,11 +150,11 @@ const SalarySlip = () => {
                       </span>{' '}
                       <span style={{ color: 'red' }}>
                         ({' '}
-                        {(30 -
+                        {((30 -
                           (salaryDetails.attendences + salaryDetails.sunday)) *
                           Number(
-                            (salaryDetails.baseslary / 30).toFixed(2)
-                          )}{' '}
+                            (salaryDetails.baseslary / 30).toFixed(2))
+                          ).toFixed(2)}{' '}
                         ₹ + {salaryDetails.lateTimeSalary} ₹)
                       </span>
                     </td>
