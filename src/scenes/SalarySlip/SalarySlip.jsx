@@ -153,7 +153,7 @@ const SalarySlip = () => {
                         {((30 -
                           (salaryDetails.attendences + salaryDetails.sunday)) *
                           Number(
-                            (salaryDetails.baseslary / 30).toFixed(2))
+                            (salaryDetails.baseslary / 30))
                           ).toFixed(2)}{' '}
                         ₹ + {salaryDetails.lateTimeSalary} ₹)
                       </span>
