@@ -17,6 +17,10 @@ import SalaryGenerate from './scenes/salaryGenerate/SalaryGenerate'
 import SalarySlip from './scenes/SalarySlip/SalarySlip'
 import Holiday from "./scenes/Holiday";
 import HalfHoliday from "./scenes/Half";
+import Admit from "./scenes/Admit/Admit";
+import CreateStudent from "./scenes/CreateStudent/CreateStudent";
+import DateCheck from './scenes/DateCheck/DateCheck'
+import StudentPayment from "./scenes/StudentPayment/StudentPayment";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -36,6 +40,9 @@ function App() {
               <Route path="/contacts" element={<Contacts />} />
               <Route path="/invoices" element={<Invoices />} />
               <Route path="/form" element={<Form />} />
+              <Route path="/date" element={<DateCheck />} />
+              <Route path="/create-student" element={<CreateStudent />} />
+              <Route path="/payment-upgrade" element={<StudentPayment />} />
               <Route path="/bar" element={<Bar />} />
               <Route path="/half-holiday" element={<HalfHoliday />} />
               <Route path="/holiday" element={<Holiday />} />
@@ -43,6 +50,7 @@ function App() {
               <Route path="/calendar" element={<Calendar />} />
               <Route path="/salary-slip" element={<SalarySlip />} />
               <Route path="/salary-generate" element={<SalaryGenerate />} />
+              <Route path="/admit" element={<Admit />} />
 
             </Routes>
           </main>

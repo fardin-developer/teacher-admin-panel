@@ -1,0 +1,179 @@
+body {
+  width: 100vw;
+  height: 100vh;
+}
+
+.admitInputData {
+  margin: auto;
+  padding: 5px 20px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+.rollNumber {
+  margin-left: 20px;
+}
+
+.admit {
+  width: 3.5in; /* Adjust width as needed */
+  margin: 0 auto; /* Center the content horizontally */
+  padding: 20px;
+  border: 1px solid #000;
+  font-family: Arial, sans-serif;
+  height: 5.5in;
+  visibility: visible;
+  position: relative;
+}
+
+.otherDetails {
+  display: flex;
+}
+
+.top {
+  font-size: 24px;
+  font-weight: bold;
+}
+#rollbtn {
+  /* Reset all styles */
+  margin: 0;
+  padding: 0;
+
+  font: initial;
+  line-height: initial;
+  color: initial;
+  background-color: initial;
+  cursor: pointer;
+  /* Add more properties as needed */
+}
+
+.schoolName {
+  font-size: 21px;
+}
+
+.address {
+  font-size: 16px;
+  color: rgb(72, 72, 72);
+  margin-top: 5px;
+}
+
+.studentDetails {
+  margin-top: 20px;
+}
+.studentDetails .name input {
+  border-style: none;
+  border-bottom: 1px dashed black;
+}
+
+.name,
+.otherDetails {
+  margin-bottom: 10px;
+}
+
+.placeholder {
+  border-bottom: 1px dashed #000;
+}
+
+.footer {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 7rem;
+
+}
+
+.left,
+.right {
+  width: 50%;
+}
+
+.stamp,
+.signature {
+  font-weight: bold;
+}
+
+.dateNow {
+  margin-top: 10px;
+}
+
+.admitPrint{
+    display: none;
+}
+
+#h2-admitButton{
+    visibility: hidden;
+}
+.h2-admitButton{
+    text-align: center;
+    color: red;
+    /* display: none; */
+    visibility: visible;
+}
+
+@media print {
+  .topBar {
+    display: none;
+  }
+  .admitInputData {
+    display: none;
+  }
+  .admit {
+    width: 3.5in; /* Adjust width as needed */
+    margin: 0px auto; /* Center the content horizontally */
+    padding: 10 20px;
+    border: 1px solid #000;
+    font-family: Arial, sans-serif;
+    height: 5.5in;
+    background-color: white;
+    color: black;
+  }
+  .sideBar {
+    display: none;
+  }
+
+  .top {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .address {
+    font-size: 16px;
+    margin-top: 5px;
+  }
+
+  .studentDetails {
+    margin-top: 20px;
+  }
+
+  .name,
+  .otherDetails {
+    margin-bottom: 10px;
+  }
+
+  .placeholder {
+    border-bottom: 1px dashed #000;
+  }
+
+  .footer {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 7rem;
+  
+  }
+
+  .left,
+  .right {
+    width: 50%;
+  }
+
+  .stamp,
+  .signature {
+    font-weight: bold;
+  }
+
+  .dateNow {
+    margin-top: 10px;
+  }
+}

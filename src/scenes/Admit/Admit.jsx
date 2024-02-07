@@ -1,0 +1,150 @@
+import React from 'react'
+import { useState, useEffect } from 'react'
+import './admit.css'
+import { useNavigate } from 'react-router-dom'
+
+const Admit = () => {
+    const navigate = useNavigate()
+
+  const handlePrint = () => {
+    window.print()
+  }
+  const [name, setName] = useState('')
+  const [selectedClass, setSelectedClass] = useState('')
+  const [selectedRollNumber, setSelectedRollNumber] = useState('')
+  const [editableClass, setEditableClass] = useState(false)
+  const [editableRollNumber, setEditableRollNumber] = useState(false)
+
+  const handleNameChange = event => {
+    setName(event.target.value)
+  }
+
+  const handleClassChange = event => {
+    setSelectedClass(event.target.value)
+    setEditableClass(true)
+  }
+
+  const handleRollNumberChange = event => {
+    setSelectedRollNumber(event.target.value)
+    setEditableRollNumber(true)
+  }
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `https://backend-teacher-production.up.railway.app/student-name?rollNo=${selectedRollNumber}&class=${selectedClass}`
+        )
+        const data = await response.json();
+        if (data.due=='unpaid') {
+            // alert('Student is not allowed to generate admit');
+            setName('Student has a debt');
+            document.getElementById('admitPrint').classList.add('admitPrint');
+            document.getElementById('h2-admitButton').removeAttribute('id')
+            return 0
+        }
+        setName(data.name)
+      } catch (error) {
+        console.error('Error fetching student data:', error)
+      }
+    }
+
+    fetchData()
+  }, [selectedRollNumber])
+
+  return (
+    <>
+      <div className='admitInputData'>
+        <div className='class'>
+          Class:
+          <select
+            className='placeholder'
+            value={selectedClass}
+            onChange={handleClassChange}
+          >
+            <option value=''>Select Class</option>
+            {[...Array(10).keys()].map(num => (
+              <option key={num + 1} value={num + 1}>
+                {num + 1}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className='rollNumber'>
+          Roll No.{' '}
+          {editableRollNumber ? (
+            <input
+              type='Number'
+              value={selectedRollNumber}
+              onChange={event => setSelectedRollNumber(event.target.value)}
+            />
+          ) : (
+            <select
+              className='placeholder'
+              value={selectedRollNumber}
+              onChange={handleRollNumberChange}
+            >
+              <option value=''>Select Roll No.</option>
+              {[...Array(70).keys()].map(num => (
+                <option key={num + 1} value={num + 1}>
+                  {num + 1}
+                </option>
+              ))}
+            </select>
+          )}
+        </div>
+      </div>
+
+      <div className='admit'>
+        <div className='top'>
+          <div className='schoolName'>Gyanudoi Jatiya Academy</div>
+          <div className='address'>
+            Noorpur Jut, P.O.:Sirajuli,
+            <br />
+            Sonitpur(Assam),Pin: 784117
+          </div>
+        </div>
+        <hr />
+        <div className='studentDetails'>
+          <div className='name'>
+            Name:{' '}
+            <input
+              className='placeholder'
+              type='text placeholder'
+              value={name}
+              onChange={handleNameChange}
+            />
+          </div>{' '}
+          <div className='otherDetails'>
+            <div className='classSection'>
+              {' '}
+              Class: <span className='placeholder'>{selectedClass}</span>
+            </div>
+            ,
+            <div className='rollSection' style={{ marginLeft: '20px' }}>
+              Roll No: <span className='placeholder'>{selectedRollNumber}</span>
+            </div>
+          </div>
+        </div>
+        <div className='paragraph'>
+          This student is permitted for all the attempts of{' '}
+          <span>{new Date().getFullYear()}</span> exam.
+        </div>
+        <div className='footer'>
+          <div className='left'>
+            <div className='stamp'>Stamp</div>
+          </div>
+          <div className='right'>
+            <div className='signature'>Signature</div>
+            <div className='dateNow'>
+              Date: {new Date().toLocaleDateString()}
+            </div>
+          </div>
+        </div>
+      </div>
+      <button className='' onClick={handlePrint} id='admitPrint'>Print</button>
+      <h2 id='h2-admitButton' className='h2-admitButton'>Can not download admit with debt </h2>
+    </>
+  )
+}
+
+export default Admit

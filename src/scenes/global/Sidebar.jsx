@@ -16,6 +16,7 @@ import PieChartOutlineOutlinedIcon from '@mui/icons-material/PieChartOutlineOutl
 import TimelineOutlinedIcon from '@mui/icons-material/TimelineOutlined'
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined'
 import MapOutlinedIcon from '@mui/icons-material/MapOutlined'
+import CreateStudent from '../CreateStudent/CreateStudent'
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme()
@@ -43,6 +44,7 @@ const Sidebar = () => {
 
   return (
     <Box
+      className='sideBar'
       sx={{
         '& .pro-sidebar-inner': {
           background: `${colors.primary[400]} !important`
@@ -168,6 +170,7 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
+
             {/* <Item
               title="Calendar"
               to="/calendar"
@@ -183,6 +186,20 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
             <Item
+              title='Create New Student'
+              to='/create-student'
+              icon={<PersonOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title='Payment Due'
+              to='/payment-upgrade'
+              icon={<HelpOutlineOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
               title='Holiday'
               to='/holiday'
               icon={<TimelineOutlinedIcon />}
@@ -193,6 +210,13 @@ const Sidebar = () => {
               title='Half Holiday'
               to='/half-holiday'
               icon={<PieChartOutlineOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title='Admit Card'
+              to='/admit'
+              icon={<TimelineOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
