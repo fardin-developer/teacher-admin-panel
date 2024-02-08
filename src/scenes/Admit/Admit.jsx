@@ -1,10 +1,22 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import './admit.css'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+
+const PageContainer = styled.div`
+  /* Add other styles for your page component */
+`;
+
+// Define the @page property within the styled component
+const PageWithPrintStyles = styled(PageContainer)`
+@page {
+  size: 5.5in 7.5in;  
+}
+`;
 
 const Admit = () => {
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
   const handlePrint = () => {
     window.print()
@@ -12,7 +24,7 @@ const Admit = () => {
   const [name, setName] = useState('')
   const [selectedClass, setSelectedClass] = useState('')
   const [selectedRollNumber, setSelectedRollNumber] = useState('')
-  const [editableClass, setEditableClass] = useState(false)
+  // const [editableClass, setEditableClass] = useState(false)
   const [editableRollNumber, setEditableRollNumber] = useState(false)
 
   const handleNameChange = event => {
@@ -21,7 +33,7 @@ const Admit = () => {
 
   const handleClassChange = event => {
     setSelectedClass(event.target.value)
-    setEditableClass(true)
+    // setEditableClass(true)
   }
 
   const handleRollNumberChange = event => {
@@ -35,7 +47,7 @@ const Admit = () => {
           `https://backend-teacher-production.up.railway.app/student-name?rollNo=${selectedRollNumber}&class=${selectedClass}`
         )
         const data = await response.json();
-        if (data.due=='unpaid') {
+        if (data.due==='unpaid') {
             // alert('Student is not allowed to generate admit');
             setName('Student has a debt');
             document.getElementById('admitPrint').classList.add('admitPrint');
@@ -49,10 +61,11 @@ const Admit = () => {
     }
 
     fetchData()
-  }, [selectedRollNumber])
+  }, [selectedRollNumber,selectedClass])
 
   return (
     <>
+    <PageWithPrintStyles>
       <div className='admitInputData'>
         <div className='class'>
           Class:
@@ -143,6 +156,7 @@ const Admit = () => {
       </div>
       <button className='' onClick={handlePrint} id='admitPrint'>Print</button>
       <h2 id='h2-admitButton' className='h2-admitButton'>Can not download admit with debt </h2>
+      </PageWithPrintStyles>   
     </>
   )
 }

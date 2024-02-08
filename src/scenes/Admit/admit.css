@@ -79,7 +79,6 @@ body {
   justify-content: center;
   margin: 0 auto;
   margin-top: 7rem;
-
 }
 
 .left,
@@ -96,19 +95,20 @@ body {
   margin-top: 10px;
 }
 
-.admitPrint{
-    display: none;
+.admitPrint {
+  display: none;
 }
 
-#h2-admitButton{
-    visibility: hidden;
+#h2-admitButton {
+  visibility: hidden;
 }
-.h2-admitButton{
-    text-align: center;
-    color: red;
-    /* display: none; */
-    visibility: visible;
+.h2-admitButton {
+  text-align: center;
+  color: red;
+  /* display: none; */
+  visibility: visible;
 }
+
 
 @media print {
   .topBar {
@@ -117,6 +117,7 @@ body {
   .admitInputData {
     display: none;
   }
+
   .admit {
     width: 3.5in; /* Adjust width as needed */
     margin: 0px auto; /* Center the content horizontally */
@@ -160,7 +161,6 @@ body {
     justify-content: center;
     margin: 0 auto;
     margin-top: 7rem;
-  
   }
 
   .left,
