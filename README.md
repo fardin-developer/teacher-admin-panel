@@ -3,6 +3,10 @@ git clone
 npm i  
 npm start
 
+## Attendance:- https://attendence-taker-with-location.vercel.app/
+Check salary with name = "Fardin" & month Jan 👇👇👇   
+## AdminLink:- [https://attendence-taker-with-location.vercel.app/](https://teachers-admin-panel.vercel.app/) 
+
 ## Features:-  
  Minute System Salary Calculation,  
  Holiday Declaration,   
