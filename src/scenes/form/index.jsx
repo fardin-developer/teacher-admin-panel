@@ -15,7 +15,7 @@ const Form = () => {
       const body = JSON.stringify(values);
 
 
-      const response = await fetch('https://backend-teacher-production.up.railway.app/create-user', {
+      const response = await fetch('https://lms.fardindev.me/create-user', {
         method: 'POST',
         headers: {
           Accept: 'application.json',

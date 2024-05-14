@@ -11,24 +11,29 @@ import './admit.css'
 // Define the @page property within the styled component
 // const PageWithPrintStyles = styled(PageContainer)`
 // @page {
-//   size: 5.5in 7.5in;  
+//   size: 5.5in 7.5in;
 // }
 // `;
 
 const Admit = () => {
-    // const navigate = useNavigate()
+  // const navigate = useNavigate()
 
   const handlePrint = () => {
     window.print()
   }
   const [name, setName] = useState('')
+  const [section, setSection] = useState('none')
   const [selectedClass, setSelectedClass] = useState('')
   const [selectedRollNumber, setSelectedRollNumber] = useState('')
   // const [editableClass, setEditableClass] = useState(false)
   const [editableRollNumber, setEditableRollNumber] = useState(false)
+  const [paid, setpaid] = useState(true)
 
   const handleNameChange = event => {
     setName(event.target.value)
+  }
+  const handleSection = event => {
+    setSection(event.target.value)
   }
 
   const handleClassChange = event => {
@@ -44,24 +49,27 @@ const Admit = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://backend-teacher-production.up.railway.app/student-name?rollNo=${selectedRollNumber}&class=${selectedClass}`
+          `https://lms.fardindev.me/student-name?rollNo=${selectedRollNumber}&class=${selectedClass}&section=${section}`
         )
         const data = await response.json();
-        if (data.due==='unpaid') {
-            // alert('Student is not allowed to generate admit');
-            setName('Student has a debt');
-            document.getElementById('admitPrint').classList.add('admitPrint');
-            document.getElementById('h2-admitButton').removeAttribute('id')
-            return 0
+        console.log(data)
+
+        if (data.due === 'unpaid') {
+          // alert('Student is not allowed to generate admit');
+          setName(`${data.name} has a debt`)
+          setpaid(false)
+          return 0
+        }else{
+          setpaid(true);
+          setName(data.name)
         }
-        setName(data.name)
       } catch (error) {
         console.error('Error fetching student data:', error)
       }
     }
 
     fetchData()
-  }, [selectedRollNumber,selectedClass])
+  }, [selectedRollNumber, selectedClass, section, name])
 
   return (
     <>
@@ -81,6 +89,7 @@ const Admit = () => {
             ))}
           </select>
         </div>
+
         <div className='rollNumber'>
           Roll No.{' '}
           {editableRollNumber ? (
@@ -103,6 +112,32 @@ const Admit = () => {
               ))}
             </select>
           )}
+        </div>
+
+        <div className='section'>
+          Section:
+          <select
+            className='placeholder'
+            value={section}
+            onChange={handleSection}
+          >
+            <option value=''>Select Section</option>
+            <option key='0' value='none'>
+              None{' '}
+            </option>
+            <option key='1' value='A'>
+              A{' '}
+            </option>
+            <option key='2' value='B'>
+              B
+            </option>
+            <option key='3' value='C'>
+              C
+            </option>
+            <option key='4' value='D'>
+              D
+            </option>
+          </select>
         </div>
       </div>
 
@@ -153,8 +188,20 @@ const Admit = () => {
           </div>
         </div>
       </div>
-      <button className='' onClick={handlePrint} id='admitPrint'>Print</button>
-      <h2 id='h2-admitButton' className='h2-admitButton'>Can not download admit with debt </h2>
+      {paid ? (
+        <button className='admitbtn' onClick={handlePrint} id='admitPrint'>
+          Print
+        </button>
+      ) : (
+        <>
+        <h3 className='h2-admitButton'>
+          Admit Card is not valid{' '}
+        </h3>
+        <h2 className='h2-admitButton'>
+          Can not download admit with debt{' '}
+        </h2>
+        </>
+      )}
     </>
   )
 }

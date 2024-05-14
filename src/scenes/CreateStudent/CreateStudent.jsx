@@ -16,7 +16,7 @@ const CreateStudent = () => {
       const body = JSON.stringify(values)
 
       const response = await fetch(
-        'https://backend-teacher-production.up.railway.app/create-student',
+        'https://lms.fardindev.me/create-student',
         {
           method: 'POST',
           headers: {

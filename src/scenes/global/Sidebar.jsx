@@ -44,8 +44,10 @@ const Sidebar = () => {
 
   return (
     <Box
-      className='sideBar'
+      className='sideBar' 
       sx={{
+        minHeight:'100vh',
+        height: 'auto', // Set height to 100% to fill the available vertical space
         '& .pro-sidebar-inner': {
           background: `${colors.primary[400]} !important`
         },

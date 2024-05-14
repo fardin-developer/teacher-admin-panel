@@ -6,7 +6,7 @@ const Holiday = () => {
 
   const handleDeclareHoliday = async () => {
     try {
-      const res = await fetch('https://backend-teacher-production.up.railway.app/holiday') // Include the protocol (http/https)
+      const res = await fetch('/holiday') // Include the protocol (http/https)
 
       if (!res.ok) {
         throw new Error(`Failed to declare holiday. Status: ${res.status}`)

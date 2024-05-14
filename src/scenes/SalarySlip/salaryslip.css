@@ -1,12 +1,18 @@
+body,html{
+    overflow-x: hidden;
+
+}
+
 .fullpage {
     width: 60vw;
-    /* height: 90vh; */
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: auto;
-    height: auto;
+    overflow-x: hidden;
 }
+
 
 .main {
     margin: 0;

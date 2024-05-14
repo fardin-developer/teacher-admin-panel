@@ -13,7 +13,7 @@ const Form = () => {
     alert('ukj')
     try {
       const body = JSON.stringify(values)
-      const response = await fetch('https://backend-teacher-production.up.railway.app/payment-update', {
+      const response = await fetch('https://lms.fardindev.me/payment-update', {
         method: 'POST',
         headers: {
           Accept: 'application/json',

@@ -30,9 +30,9 @@ function App() {
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <div className="app">
+        <div className="app" style={{height:'auto'}}>
           <Sidebar isSidebar={isSidebar} />
-          <main className="content">
+          <main className="content" >
             <Topbar setIsSidebar={setIsSidebar} />
             <Routes>
               <Route path="/" element={<SalaryGenerate />} />
@@ -51,7 +51,6 @@ function App() {
               <Route path="/salary-slip" element={<SalarySlip />} />
               <Route path="/salary-generate" element={<SalaryGenerate />} />
               <Route path="/admit" element={<Admit />} />
-
             </Routes>
           </main>
         </div>

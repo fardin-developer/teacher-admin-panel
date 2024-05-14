@@ -8,7 +8,7 @@ const Invoices = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("https://backend-teacher-production.up.railway.app/users");
+      const response = await fetch("https://lms.fardindev.me/users");
 
       if (!response.ok) {
         throw new Error(`Failed to fetch data. Status: ${response.status}`);
