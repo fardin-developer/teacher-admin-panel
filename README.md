@@ -1,7 +1,18 @@
-# React Admin Dashboard
+# React Teacher management Dashboard
+git clone  
+npm i  
+npm start
 
-Build a COMPLETE React Admin Dashboard App | React, Material UI, Data Grid, Light & Dark Mode
+## Attendance:- https://attendence-taker-with-location.vercel.app/
+Check salary with name = "Fardin" & month Jan 👇👇👇   
+## AdminLink:- [https://attendence-taker-with-location.vercel.app/](https://teachers-admin-panel.vercel.app/) 
 
-Video: https://www.youtube.com/watch?v=wYpCWwD1oz0
+## Features:-  
+ Minute System Salary Calculation,  
+ Holiday Declaration,   
+ Salary Upgrade,     
+ Add new Teacher,     
+ Half Holiday Declaration 
+## Here is a demo of salary slip
 
-For all related questions and discussions about this project, check out the discord: https://discord.gg/2FfPeEk2mX
+![salary slip](https://github.com/fardin-developer/teacher-admin-panel/assets/105560328/d2c72773-c9d6-4681-a9ec-f8bbc7dbbf75)
