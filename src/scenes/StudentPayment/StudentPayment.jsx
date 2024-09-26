@@ -1,4 +1,4 @@
-import { Box, Button, TextField } from '@mui/material'
+import { Box, Button, TextField,Select,MenuItem } from '@mui/material'
 import { Formik } from 'formik'
 import * as yup from 'yup'
 import useMediaQuery from '@mui/material/useMediaQuery'
@@ -10,7 +10,6 @@ const Form = () => {
   const [message, setMessage] = useState('')
   const [green, setGreen] = useState(false)
   const handleFormSubmit = async values => {
-    alert('ukj')
     try {
       const body = JSON.stringify(values)
       const response = await fetch('https://lms.fardindev.me/payment-update', {
@@ -70,12 +69,32 @@ const Form = () => {
                 label='Class'
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.class}
-                name='class'
-                error={!!touched.class && !!errors.class}
-                helperText={touched.class && errors.class}
+                value={values.Class}
+                name='Class'
+                error={!!touched.Class && !!errors.Class}
+                helperText={touched.Class && errors.Class}
                 sx={{ gridColumn: 'span 2' }}
               />
+            <Select
+                fullWidth
+                variant='filled'
+                type='section'
+                label='Parents Phone Number'
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.section}
+                name='section'
+                error={!!touched.section && !!errors.section}
+                helperText={touched.section && errors.section}
+                sx={{ gridColumn: 'span 2' }}
+              >
+                <MenuItem value={"none"}>None</MenuItem>
+                <MenuItem value={"A"}>A</MenuItem>
+                <MenuItem value={'B'}>B</MenuItem>
+                <MenuItem value={'C'}>C</MenuItem>
+                <MenuItem value={'D'}>D</MenuItem>
+                <MenuItem value={'E'}>E</MenuItem>
+              </Select>
               <TextField
                 fullWidth
                 variant='filled'
@@ -83,10 +102,10 @@ const Form = () => {
                 label='Roll Number'
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.rollno} // Use values.rollno here
-                name='rollno' // Use "rollno" as the name
-                error={!!touched.rollno && !!errors.rollno}
-                helperText={touched.rollno && errors.rollno}
+                value={values.rollNo} // Use values.rollno here
+                name='rollNo' // Use "rollno" as the name
+                error={!!touched.rollNo && !!errors.rollNo}
+                helperText={touched.rollNo && errors.rollNo}
                 sx={{ gridColumn: 'span 2' }}
               />
             </Box>
@@ -110,13 +129,15 @@ const Form = () => {
 }
 
 const checkoutSchema = yup.object().shape({
-  class: yup.number().required('Class is required'),
-  rollno: yup.number().required('Roll No. is required')
+  Class: yup.number().required('Class is required'),
+  section: yup.string().required('Section is required'),
+  rollNo: yup.number().required('Roll No. is required')
 })
 
 const initialValues = {
-  class: '',
-  rollno: ''
+  Class: '',
+  section:'',
+  rollNo: ''
 }
 
 export default Form

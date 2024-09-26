@@ -1,4 +1,4 @@
-import { Box, Button, TextField } from '@mui/material'
+import { Box, Button, TextField, Select, MenuItem } from '@mui/material'
 import { Formik } from 'formik'
 import * as yup from 'yup'
 import useMediaQuery from '@mui/material/useMediaQuery'
@@ -11,31 +11,30 @@ const CreateStudent = () => {
   const [message, setMessage] = useState('')
 
   const handleFormSubmit = async values => {
-    console.log(values)
+    // console.log(values);
     try {
       const body = JSON.stringify(values)
 
-      const response = await fetch(
-        'https://lms.fardindev.me/create-student',
-        {
-          method: 'POST',
-          headers: {
-            Accept: 'application.json',
-            'Content-Type': 'application/json'
-          },
-          body: body,
-          cache: 'default'
-        }
-      )
+      const response = await fetch('https://lms.fardindev.me/create-student', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json', // Corrected the typo here
+          'Content-Type': 'application/json'
+        },
+        body: body,
+        cache: 'default'
+      })
       if (response.ok) {
         const responseData = await response.json()
-        setMessage(responseData)
-        console.log('Response:', responseData.message)
+        setMessage(responseData.message)
+        // console.log('Response:', responseData.message);
+        alert(responseData.message)
       } else {
         console.log('Error:', response.status, response.statusText)
       }
-    } catch (error) {}
-
+    } catch (error) {
+      console.error('Error:', error)
+    }
   }
 
   return (
@@ -84,10 +83,10 @@ const CreateStudent = () => {
                 label='Class'
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.number}
-                name='number'
-                error={!!touched.number && !!errors.number}
-                helperText={touched.number && errors.number}
+                value={values.Class} // Corrected the field name here
+                name='Class'
+                error={!!touched.Class && !!errors.Class} // Corrected the field name here
+                helperText={touched.Class && errors.Class} // Corrected the field name here
                 sx={{ gridColumn: 'span 2' }}
               />
               <TextField
@@ -97,10 +96,10 @@ const CreateStudent = () => {
                 label='Roll Number'
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.rollnumber}
-                name='rollnumber'
-                error={!!touched.number && !!errors.number}
-                helperText={touched.number && errors.number}
+                value={values.rollNo}
+                name='rollNo'
+                error={!!touched.rollNo && !!errors.rollNo}
+                helperText={touched.rollNo && errors.rollNo}
                 sx={{ gridColumn: 'span 2' }}
               />
               <TextField
@@ -109,7 +108,10 @@ const CreateStudent = () => {
                 id='date'
                 label='Select Date'
                 type='date'
-                value={values.date}
+                value={values.DOB}
+                name='DOB'
+                error={!!touched.DOB && !!errors.DOB}
+                helperText={touched.DOB && errors.DOB}
                 onChange={handleChange}
                 InputLabelProps={{
                   shrink: true
@@ -121,62 +123,81 @@ const CreateStudent = () => {
                 fullWidth
                 variant='filled'
                 type='number'
-                label='Phone Number'
+                label='Parents Phone Number'
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.phone}
-                name='phone'
-                error={!!touched.phone && !!errors.phone}
-                helperText={touched.phone && errors.phone}
-                sx={{ gridColumn: 'span 4' }}
+                value={values.parentsPhone}
+                name='parentsPhone'
+                error={!!touched.parentsPhone && !!errors.parentsPhone}
+                helperText={touched.parentsPhone && errors.parentsPhone}
+                sx={{ gridColumn: 'span 2' }}
               />
+              {/* <TextField value={values.section} sx={{ gridColumn: 'span 2' }} /> */}
+              <Select
+                fullWidth
+                variant='filled'
+                type='section'
+                label='Parents Phone Number'
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.section}
+                name='section'
+                error={!!touched.section && !!errors.section}
+                helperText={touched.section && errors.section}
+                sx={{ gridColumn: 'span 2' }}
+              >
+                <MenuItem value={"none"}>None</MenuItem>
+                <MenuItem value={"A"}>A</MenuItem>
+                <MenuItem value={'B'}>B</MenuItem>
+                <MenuItem value={'C'}>C</MenuItem>
+                <MenuItem value={'D'}>D</MenuItem>
+                <MenuItem value={'E'}>E</MenuItem>
+              </Select>
             </Box>
             <Box display='flex' justifyContent='end' mt='20px'>
               <Button type='submit' color='secondary' variant='contained'>
                 Create New Student
               </Button>
             </Box>
+            {/* Corrected message object access */}
             <h2
               style={{
                 textAlign: 'center',
                 fontSize: 'x-large',
-                color: message.status === 200 ? '#40ed40' : '#c95757'
+                color: message === 'success' ? '#40ed40' : '#c95757'
               }}
             >
               {' '}
-              {message.message}
+              {message}
             </h2>
-            <p
-              style={{
-                textAlign: 'center',
-                fontSize: 'large',
-                color: message.status === 200 ? '#4287f5' : '#c95757'
-              }}
-            >
-              {message.message1}
-            </p>
           </form>
         )}
       </Formik>
     </Box>
   )
 }
+
 const phoneRegExp = /^[6789]\d{9}$/
 
 const checkoutSchema = yup.object().shape({
   name: yup.string().required('Name is required'),
-  number: yup.number().required('Number is required'),
-  rollnumber: yup.number().required('Roll Number is required'),
-  phone: yup.string().matches(phoneRegExp, 'Phone number is not valid'),
-  date: yup.date().required('Date is required')
+  Class: yup.number().required('Class is required'),
+  rollNo: yup.string().required('Roll Number is required'),
+  section: yup.string().required('If no section select None'),
+  parentsPhone: yup
+    .string()
+    .matches(phoneRegExp, 'Phone number is not valid')
+    .required("Parent's Phone Number is compulsory"), // Corrected the error message here
+  DOB: yup.date().required('Date of Birth is required') // Corrected the error message here
 })
 
 const initialValues = {
   name: '',
-  number: '',
-  rollnumber: '',
-  phone: '',
-  date: ''
+  Class: '',
+  rollNo: '',
+  section: '',
+  parentsPhone: '',
+  DOB: ''
 }
 
 export default CreateStudent
