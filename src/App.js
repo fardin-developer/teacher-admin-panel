@@ -40,11 +40,11 @@ function App() {
               {/* Redirect to login if not authenticated */}
               <Route
                 path="/"
-                element={isAuthenticated ? <SalaryGenerate /> : <Navigate to="/login" />}
+              element={isAuthenticated ? <SalaryGenerate /> : <Navigate to="/login" />}
               />
               <Route path="/login" element={<Login />} />
               
-              {/* Protected Routes */}
+
               {isAuthenticated ? (
                 <>
                   <Route path="/team" element={<Team />} />
