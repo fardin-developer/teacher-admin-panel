@@ -9,9 +9,8 @@ import Contacts from "./scenes/contacts";
 import Bar from "./scenes/bar";
 import Form from "./scenes/form";
 import FAQ from "./scenes/salaryUpgrade";
-import Geography from "./scenes/geography";
 import { CssBaseline, ThemeProvider } from "@mui/material";
-import { ColorModeContext, useMode } from "./theme";
+import { ColorModeContext, tokens, useMode } from "./theme";
 import Calendar from "./scenes/calendar/calendar";
 import SalaryGenerate from './scenes/salaryGenerate/SalaryGenerate';
 import SalarySlip from './scenes/SalarySlip/SalarySlip';
@@ -21,12 +20,16 @@ import Admit from "./scenes/Admit/Admit";
 import CreateStudent from "./scenes/CreateStudent/CreateStudent";
 import DateCheck from './scenes/DateCheck/DateCheck';
 import StudentPayment from "./scenes/StudentPayment/StudentPayment";
-import Login from "./scenes/Login/Login"; // Import Login page
+import Login from "./scenes/Login/Login";
+import { isLoggedIn, isMaster, isTeacher } from "./utils/auth";
 
 function App() {
   const [theme, colorMode] = useMode();
   const [isSidebar, setIsSidebar] = useState(true);
-  const isAuthenticated = !!localStorage.getItem("token"); // Check if user is logged in
+  const isAuthenticated = isLoggedIn();
+  const checkTeacher = isTeacher();
+  const isMasters = isMaster()
+
 
   return (
     <ColorModeContext.Provider value={colorMode}>
@@ -37,17 +40,23 @@ function App() {
           <main className="content">
             {isAuthenticated && <Topbar setIsSidebar={setIsSidebar} />}
             <Routes>
-              {/* Redirect to login if not authenticated */}
               <Route
                 path="/"
-              element={isAuthenticated ? <SalaryGenerate /> : <Navigate to="/login" />}
+                element={
+                  isAuthenticated ? (
+                    checkTeacher ? <Navigate to="/salary" /> : <Dashboard />
+                  ) : (
+                    <Navigate to="/login" />
+                  )
+                }
               />
               <Route path="/login" element={<Login />} />
-              
 
+              {/* Protected Routes */}
               {isAuthenticated ? (
                 <>
                   <Route path="/team" element={<Team />} />
+                  <Route path="/salary" element={<SalaryGenerate />} />
                   <Route path="/contacts" element={<Contacts />} />
                   <Route path="/invoices" element={<Invoices />} />
                   <Route path="/form" element={<Form />} />

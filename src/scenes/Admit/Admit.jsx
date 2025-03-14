@@ -49,7 +49,7 @@ const Admit = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://lms.fardindev.me/student-name?rollNo=${selectedRollNumber}&class=${selectedClass}&section=${section}`
+          `https://lms.fardin.space/student-name?rollNo=${selectedRollNumber}&class=${selectedClass}&section=${section}`
         )
         const data = await response.json();
         console.log(data)

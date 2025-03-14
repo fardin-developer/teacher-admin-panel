@@ -42,7 +42,7 @@ const Salary = () => {
 
             console.log(`Selected Month: ${Months[smonth]}, Year: ${syear}`);
             try {
-                const response = await fetch('https://lms.fardindev.me/salary', {
+                const response = await fetch('https://lms.fardin.space/salary', {
                     method: 'POST',
                     headers: {
                         Accept: 'application.json',

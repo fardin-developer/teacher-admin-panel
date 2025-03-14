@@ -1,1 +1,1 @@
-BASE_URL = 'https://lms.fardindev.me'
+BASE_URL = 'https://lms.fardin.space'

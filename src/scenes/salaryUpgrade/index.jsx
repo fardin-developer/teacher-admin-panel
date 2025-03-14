@@ -12,7 +12,7 @@ const Form = () => {
   const handleFormSubmit = async (values) => {
     try {
       const body = JSON.stringify(values);
-      const response = await fetch('https://lms.fardindev.me/upgrade-salary', {
+      const response = await fetch('https://lms.fardin.space/upgrade-salary', {
         method: 'POST',
         headers: {
           Accept: 'application/json', 

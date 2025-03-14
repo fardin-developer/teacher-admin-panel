@@ -6,7 +6,7 @@ const HalfHoliday = () => {
 
   const handleDeclareHoliday = async () => {
     try {
-      const res = await fetch('https://lms.fardindev.me/half-holiday') // Include the protocol (http/https)
+      const res = await fetch('https://lms.fardin.space/half-holiday') // Include the protocol (http/https)
 
       if (!res.ok) {
         throw new Error(`Failed to declare holiday. Status: ${res.status}`)

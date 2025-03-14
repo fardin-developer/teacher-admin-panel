@@ -8,7 +8,7 @@ const Invoices = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("https://lms.fardindev.me/users");
+      const response = await fetch("https://lms.fardin.space/users");
 
       if (!response.ok) {
         throw new Error(`Failed to fetch data. Status: ${response.status}`);

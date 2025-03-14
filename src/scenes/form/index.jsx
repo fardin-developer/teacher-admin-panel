@@ -7,7 +7,7 @@ import { useState } from "react";
 
 const Form = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
-  const[message,setMessage]=useState('')
+  const [message, setMessage] = useState('')
 
   const handleFormSubmit = async (values) => {
     // console.log(values);
@@ -15,7 +15,7 @@ const Form = () => {
       const body = JSON.stringify(values);
 
 
-      const response = await fetch('https://lms.fardindev.me/create-user', {
+      const response = await fetch('https://lms.fardin.space/create-user', {
         method: 'POST',
         headers: {
           Accept: 'application.json',
@@ -41,7 +41,7 @@ const Form = () => {
 
   return (
     <Box m="20px">
-      <Header title="CREATE USER" subtitle="Create a New User Profile" />
+      <Header title="CREATE Teacher" subtitle="Create a New Teacher Profile" />
 
       <Formik
         onSubmit={handleFormSubmit}
@@ -145,6 +145,20 @@ const Form = () => {
                 helperText={touched.phone && errors.phone}
                 sx={{ gridColumn: "span 4" }}
               />
+              <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="Image Link (Optional)"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.url} 
+                name="url"
+                error={!!touched.url && !!errors.url}  
+                helperText={touched.url && errors.url}  
+                sx={{ gridColumn: "span 4" }}
+              />
+
 
             </Box>
             <Box display="flex" justifyContent="end" mt="20px">
@@ -152,8 +166,8 @@ const Form = () => {
                 Create New User
               </Button>
             </Box>
-            <h2 style={{ textAlign: "center",fontSize:"x-large", color:(message.status===200)?"#40ed40":"#c95757" }}> {message.message}</h2>
-            <p style={{ textAlign: "center",fontSize:"large",color:(message.status===200)?"#4287f5":"#c95757" }}>{message.message1}</p>
+            <h2 style={{ textAlign: "center", fontSize: "x-large", color: (message.status === 200) ? "#40ed40" : "#c95757" }}> {message.message}</h2>
+            <p style={{ textAlign: "center", fontSize: "large", color: (message.status === 200) ? "#4287f5" : "#c95757" }}>{message.message1}</p>
 
           </form>
 
@@ -177,6 +191,7 @@ const checkoutSchema = yup.object().shape({
     .required("Please confirm your password"),
   // email: yup.string().email("Invalid email address").required("Email is required"),
   phone: yup.string().matches(phoneRegExp, 'Phone number is not valid'),
+  url: yup.string().url("Invalid image URL").nullable().notRequired(),
 
 
 });
@@ -187,7 +202,8 @@ const initialValues = {
   password: "",
   confirmPassword: "",
   // email:"",
-  phone: ""
+  phone: "",
+  url: ""
 };
 
 

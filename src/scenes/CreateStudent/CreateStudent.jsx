@@ -15,7 +15,7 @@ const CreateStudent = () => {
     try {
       const body = JSON.stringify(values)
 
-      const response = await fetch('https://lms.fardindev.me/create-student', {
+      const response = await fetch('https://lms.fardin.space/create-student', {
         method: 'POST',
         headers: {
           Accept: 'application/json', // Corrected the typo here

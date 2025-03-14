@@ -33,16 +33,45 @@ const Login = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-        if (email === "admin@example.com" && password === "password" && role) {
-            localStorage.setItem("token", "user_authenticated");
-            localStorage.setItem("role", role);
-            navigate("/");
-        } else {
-            setError("Invalid email, password, or role");
+        setError(""); // Clear any previous errors
+        console.log(role);
+        
+    
+        try {
+            const response = await fetch("http://localhost:800/admin/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    username: email, // Ensure backend expects `username`, not `email`
+                    password,
+                    role,
+                }),
+            });
+    
+            const data = await response.json();
+    
+            if (!response.ok) {
+                throw new Error(data.message || "Login failed");
+            }
+    
+            // Store token and role in localStorage
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("role", data.role);
+    
+            // Navigate to the home page or dashboard
+            setTimeout(() => {
+                window.location.href = "/";
+            }, 1000);
+    
+        } catch (error) {
+            setError(error.message);
         }
     };
+    
 
     const handleTogglePassword = () => {
         setShowPassword(!showPassword);
@@ -112,7 +141,7 @@ const Login = () => {
                             margin="normal"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            required
+                            // required
                             sx={{ mb: 2 }}
                         />
 
@@ -146,8 +175,8 @@ const Login = () => {
                                 required
                                 sx={{ mt: 1 }}
                             >
-                                <MenuItem value="master">Master/Head</MenuItem>
-                                <MenuItem value="teacher">Teacher</MenuItem>
+                                <MenuItem value="MASTER">MASTER/HEAD</MenuItem>
+                                <MenuItem value="TEACHER">TEACHER</MenuItem>
                             </Select>
                         </FormControl>
 
