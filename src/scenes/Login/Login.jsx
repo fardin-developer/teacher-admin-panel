@@ -40,7 +40,7 @@ const Login = () => {
         
     
         try {
-            const response = await fetch("http://localhost:800/admin/login", {
+            const response = await fetch("https://lms.fardin.space/admin/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

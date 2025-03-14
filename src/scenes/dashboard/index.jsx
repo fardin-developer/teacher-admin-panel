@@ -113,7 +113,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        const response = await axios.get('http://localhost:800/dashboard');
+        const response = await axios.get('https://lms.fardin.space/dashboard');
         console.log(response.data);
 
         setDashboardData(response.data.data);
