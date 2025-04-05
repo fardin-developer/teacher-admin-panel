@@ -1,4 +1,7 @@
 # React Teacher management Dashboard
+![Dashboard UI](image.png)
+
+## Set Up
 git clone  
 npm i  
 npm start
